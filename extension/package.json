@@ -1,0 +1,25 @@
+{
+    "name": "coffee4",
+    "displayName": "coffee4",
+    "description": "",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.60.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "coffee4",
+            "aliases": ["coffee4", "coffee4"],
+            "extensions": [".coffee",".c4"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "coffee4",
+            "scopeName": "source.coffe4",
+            "path": "./syntaxes/coffee4.tmLanguage.json"
+        }]
+    }
+}
