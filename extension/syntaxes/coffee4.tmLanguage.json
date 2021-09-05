@@ -6,6 +6,9 @@
 			"include": "#keywords"
 		},
 		{
+			"include": "#types"
+		},
+		{
 			"include": "#strings"
 		}
 	],
@@ -13,7 +16,13 @@
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.coffee4",
-				"match": "\\b(package|class|interface|export)\\b"
+				"match": "\\b(public|package|class|interface|export)\\b"
+			}]
+		},
+		"types": {
+			"patterns": [{
+				"name": "keyword.control.coffee4",
+				"match": "\\b(String|Int|Bool)\\b"
 			}]
 		},
 		"strings": {
