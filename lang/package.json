@@ -1,0 +1,42 @@
+{
+  "name": "coffee4",
+  "version": "1.0.0",
+  "description": "",
+  "bin": {
+    "coffer": "cli.js"
+  },
+  "scripts": {
+    "antlr4ts-coffee4": "antlr4ts -visitor src/coffee4/Coffee4.g4",
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gmvbr/coffee4.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gmvbr/coffee4/issues"
+  },
+  "homepage": "https://github.com/gmvbr/coffee4#readme",
+  "dependencies": {
+    "antlr4": "^4.9.2",
+    "antlr4ts": "^0.5.0-alpha.4",
+    "change-case": "^4.1.2",
+    "commander": "^8.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.11.2",
+    "antlr4ts-cli": "^0.5.0-alpha.4",
+    "gts": "^3.1.0",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.0.3"
+  }
+}
