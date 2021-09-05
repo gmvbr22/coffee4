@@ -1,25 +1,29 @@
 import {pascalCase, snakeCase} from 'change-case';
 import {Builder, StringBuilder} from '../builder';
 import {FieldType} from './field';
+import {MethodType} from './method';
 
 export class ClassType implements Builder {
   public readonly visible: boolean;
   public readonly name: string;
-  public readonly fields: FieldType[];
+  public readonly fields: FieldType[] = [];
+  public readonly methods: MethodType[] = [];
 
-  constructor(visible: boolean, name: string, fields: FieldType[]) {
+  constructor(visible: boolean, name: string) {
     this.visible = visible;
     this.name = name;
-    this.fields = fields;
+  }
+
+  public getName(): string {
+    if (this.visible) {
+      return pascalCase(this.name);
+    }
+    return snakeCase(this.name);
   }
 
   public build(builder: StringBuilder) {
     builder.append('type ');
-    if (this.visible) {
-      builder.append(pascalCase(this.name));
-    } else {
-      builder.append(snakeCase(this.name));
-    }
+    builder.append(this.getName());
     builder.append(' struct {');
     builder.newline();
     for (const item of this.fields) {
@@ -28,5 +32,8 @@ export class ClassType implements Builder {
     builder.append('}');
     builder.newline();
     builder.newline();
+    for (const item of this.methods) {
+      item.build(builder);
+    }
   }
 }
