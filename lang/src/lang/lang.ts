@@ -2,6 +2,7 @@ import {
   CoffeeClassContext,
   CoffeeInterfaceContext,
   FieldDeclarationContext,
+  MethodDeclarationContext,
   PrivateFieldsContext,
   PrivateTypesContext,
   ProgramContext,
@@ -12,41 +13,30 @@ import {Builder} from './builder';
 import {ClassType} from './types/class';
 import {FieldType} from './types/field';
 import {InterfaceType} from './types/interface';
+import {MethodType} from './types/method';
 import {ProgramType} from './types/program';
 
 export class LangBuilder {
   static parseProgram(node: ProgramContext): Builder {
     const name = node.namespace().PACKAGE_NAME().text;
     return new ProgramType(name, [
-      ...LangBuilder.parsePrivateTypes(node.privateTypes()),
-      ...LangBuilder.parsePublicTypes(node.publicTypes()),
+      ...LangBuilder.fileContent(true, node.publicTypes()),
+      ...LangBuilder.fileContent(false, node.privateTypes()),
     ]);
   }
 
-  static parsePublicTypes(nodes: PublicTypesContext[]): Builder[] {
+  static fileContent(
+    isExport: boolean,
+    nodes: PublicTypesContext[] | PrivateTypesContext[]
+  ): Builder[] {
     const types = [];
     if (nodes !== undefined) {
       for (const type of nodes) {
         let temp;
         if ((temp = type.coffeeClass()) !== undefined) {
-          types.push(LangBuilder.parseClassType(true, temp));
+          types.push(LangBuilder.parseClassType(isExport, temp));
         } else if ((temp = type.coffeeInterface()) !== undefined) {
-          types.push(LangBuilder.parseInterfaceType(true, temp));
-        }
-      }
-    }
-    return types;
-  }
-
-  static parsePrivateTypes(nodes: PrivateTypesContext[]): Builder[] {
-    const types = [];
-    if (nodes !== undefined) {
-      for (const type of nodes) {
-        let temp;
-        if ((temp = type.coffeeClass()) !== undefined) {
-          types.push(LangBuilder.parseClassType(false, temp));
-        } else if ((temp = type.coffeeInterface()) !== undefined) {
-          types.push(LangBuilder.parseInterfaceType(false, temp));
+          types.push(LangBuilder.parseInterfaceType(isExport, temp));
         }
       }
     }
@@ -54,36 +44,32 @@ export class LangBuilder {
   }
 
   static parseClassType(isExport: boolean, node: CoffeeClassContext): Builder {
-    return new ClassType(isExport, node.identifier().text, [
-      ...LangBuilder.publicFields(node.publicFields()),
-      ...LangBuilder.privateFields(node.privateFields()),
-    ]);
+    const classT = new ClassType(isExport, node.identifier().text);
+
+    LangBuilder.processContent(true, node.publicFields(), classT);
+    LangBuilder.processContent(false, node.privateFields(), classT);
+
+    return classT;
   }
 
-  static publicFields(nodes: PublicFieldsContext[]): FieldType[] {
-    const types: FieldType[] = [];
+  static processContent(
+    isExport: boolean,
+    nodes: PublicFieldsContext[] | PrivateFieldsContext[],
+    classT: ClassType
+  ) {
     if (nodes !== undefined) {
       for (const type of nodes) {
         let temp;
         if ((temp = type.fieldDeclaration()) !== undefined) {
-          types.push(LangBuilder.fieldDeclaration(true, temp));
+          classT.fields.push(LangBuilder.fieldDeclaration(isExport, temp));
+        }
+        if ((temp = type.methodDeclaration()) !== undefined) {
+          classT.methods.push(
+            LangBuilder.methodDeclaration(isExport, temp, classT)
+          );
         }
       }
     }
-    return types;
-  }
-
-  static privateFields(nodes: PrivateFieldsContext[]): FieldType[] {
-    const types: FieldType[] = [];
-    if (nodes !== undefined) {
-      for (const type of nodes) {
-        let temp;
-        if ((temp = type.fieldDeclaration()) !== undefined) {
-          types.push(LangBuilder.fieldDeclaration(true, temp));
-        }
-      }
-    }
-    return types;
   }
 
   static fieldDeclaration(
@@ -95,6 +81,14 @@ export class LangBuilder {
       node.identifier().text,
       node.primitive().text
     );
+  }
+
+  static methodDeclaration(
+    isExport: boolean,
+    node: MethodDeclarationContext,
+    classT: ClassType
+  ): MethodType {
+    return new MethodType(isExport, classT, node.identifier().text, 'void');
   }
 
   static parseInterfaceType(
