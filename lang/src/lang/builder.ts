@@ -2,6 +2,8 @@ export interface Builder {
   build(builder: StringBuilder, tab: number): void;
 }
 
+export const defaultBuilder = {build() {}};
+
 export class StringBuilder {
   private src = '';
 
