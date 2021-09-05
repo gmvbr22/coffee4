@@ -1,22 +1,20 @@
-package hero
+package control
 
-type vehicle interface {
-}
-
-type Task interface {
-}
-
-type Mesh struct {
+type Profile struct {
   Name string
-  X int
-  Y int
-  Z int
-}
-
-type Person struct {
-  Name string
-  Age int
   Email string
   Password string
+  Phone string
+}
+
+func (self_profile *Profile) UpdateProfile() {
+}
+
+type Authentication struct {
+  message_error string
+  message_success string
+}
+
+func (self_authentication *Authentication) Login() {
 }
 

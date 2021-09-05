@@ -1,24 +1,24 @@
-package hero;
+package control;
 
-interface Vehicle {
-
-}
-
-public interface Task {}
-
-public class Mesh {
-
-    public String name
-    public Int x; 
-    public Int y;
-    public Int z; 
-}
-
-public class Person {
+public class Profile {
 
     public String name;
-    public Int age;
     public String email;
     public String password;
+    public String phone;
+
+    public updateProfile(){
+
+    }
+}
+
+public class Authentication {
+
+    String messageError;
+    String messageSuccess;
+
+    public login() {
+
+    }
 }
 
