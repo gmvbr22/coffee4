@@ -3,6 +3,7 @@
     "displayName": "coffee4",
     "description": "",
     "version": "0.0.1",
+    "publisher": "gmvbr",
     "engines": {
         "vscode": "^1.60.0"
     },
@@ -18,7 +19,7 @@
         }],
         "grammars": [{
             "language": "coffee4",
-            "scopeName": "source.coffe4",
+            "scopeName": "source.coffee4",
             "path": "./syntaxes/coffee4.tmLanguage.json"
         }]
     }
