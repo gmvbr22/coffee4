@@ -1,26 +1,69 @@
 grammar Coffee4;
 
-PACKAGE: 'package';
-INTERFACE: 'interface';
-CLASS: 'class';
-EXPORT: 'export';
-END_CODE: ';';
-BLOCK_START: '{';
-BLOCK_END: '}';
+program
+    : namespace (privateTypes|publicTypes)* EOF
+    ;
 
-program: namespace ( privateTypes | publicTypes)+ EOF;
+namespace
+    : 'package' PACKAGE_NAME ';'
+    ;
 
-privateTypes: ( coffeeClass | coffeeInterface);
-publicTypes: EXPORT ( coffeeClass | coffeeInterface);
+privateTypes
+    : ( coffeeClass | coffeeInterface)
+    ;
 
-namespace: PACKAGE ID END_CODE;
+publicTypes
+    : 'public' ( coffeeClass | coffeeInterface)
+    ;
 
-coffeeClass: CLASS NAME BLOCK_START BLOCK_END;
-coffeeInterface: INTERFACE NAME BLOCK_START BLOCK_END;
+coffeeInterface
+    : 'interface' identifier
+      '{'
+      '}'
+    ;
+
+coffeeClass
+    : 'class' identifier '{'
+        (privateFields|publicFields)*
+      '}'
+    ;
+
+privateFields
+    : fieldDeclaration
+    | methodDeclaration
+    ;
+
+publicFields
+    : 'public' (fieldDeclaration | methodDeclaration)
+    ;
+
+fieldDeclaration
+    : primitive identifier ';'
+    ;
+
+methodDeclaration
+    : 'func' identifier '(' ')'
+      '{'
+      '}'
+    ;
+    
+identifier
+    : TYPE_NAME
+    | PACKAGE_NAME
+    ;
+
+primitive
+    : 'String'
+    | 'Int'
+    | 'Bool'
+    ;
+    
+PACKAGE_NAME
+    : [a-z]+
+    ;
+    
+TYPE_NAME
+    : [A-Za-z] [A-Za-z0-9]*
+    ;
 
 WS: [ \t\r\n]+ -> skip;
-
-NEWLINE: '\n';
-ID: [a-z]+;
-
-NAME: [A-Z][a-zA-Z0-9]+;

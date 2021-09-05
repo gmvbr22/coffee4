@@ -15,7 +15,7 @@ import { VocabularyImpl } from "antlr4ts/VocabularyImpl";
 import * as Utils from "antlr4ts/misc/Utils";
 
 
-export class Coffee4Lexer extends Lexer {
+export class CoffeeLexer extends Lexer {
 	public static readonly T__0 = 1;
 	public static readonly T__1 = 2;
 	public static readonly T__2 = 3;
@@ -57,35 +57,35 @@ export class Coffee4Lexer extends Lexer {
 		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
 		"PACKAGE_NAME", "TYPE_NAME", "WS",
 	];
-	public static readonly VOCABULARY: Vocabulary = new VocabularyImpl(Coffee4Lexer._LITERAL_NAMES, Coffee4Lexer._SYMBOLIC_NAMES, []);
+	public static readonly VOCABULARY: Vocabulary = new VocabularyImpl(CoffeeLexer._LITERAL_NAMES, CoffeeLexer._SYMBOLIC_NAMES, []);
 
 	// @Override
 	// @NotNull
 	public get vocabulary(): Vocabulary {
-		return Coffee4Lexer.VOCABULARY;
+		return CoffeeLexer.VOCABULARY;
 	}
 	// tslint:enable:no-trailing-whitespace
 
 
 	constructor(input: CharStream) {
 		super(input);
-		this._interp = new LexerATNSimulator(Coffee4Lexer._ATN, this);
+		this._interp = new LexerATNSimulator(CoffeeLexer._ATN, this);
 	}
 
 	// @Override
 	public get grammarFileName(): string { return "Coffee4.g4"; }
 
 	// @Override
-	public get ruleNames(): string[] { return Coffee4Lexer.ruleNames; }
+	public get ruleNames(): string[] { return CoffeeLexer.ruleNames; }
 
 	// @Override
-	public get serializedATN(): string { return Coffee4Lexer._serializedATN; }
+	public get serializedATN(): string { return CoffeeLexer._serializedATN; }
 
 	// @Override
-	public get channelNames(): string[] { return Coffee4Lexer.channelNames; }
+	public get channelNames(): string[] { return CoffeeLexer.channelNames; }
 
 	// @Override
-	public get modeNames(): string[] { return Coffee4Lexer.modeNames; }
+	public get modeNames(): string[] { return CoffeeLexer.modeNames; }
 
 	public static readonly _serializedATN: string =
 		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x02\x12t\b\x01\x04" +
@@ -137,11 +137,11 @@ export class Coffee4Lexer extends Lexer {
 		"\x02\x02";
 	public static __ATN: ATN;
 	public static get _ATN(): ATN {
-		if (!Coffee4Lexer.__ATN) {
-			Coffee4Lexer.__ATN = new ATNDeserializer().deserialize(Utils.toCharArray(Coffee4Lexer._serializedATN));
+		if (!CoffeeLexer.__ATN) {
+			CoffeeLexer.__ATN = new ATNDeserializer().deserialize(Utils.toCharArray(CoffeeLexer._serializedATN));
 		}
 
-		return Coffee4Lexer.__ATN;
+		return CoffeeLexer.__ATN;
 	}
 
 }
