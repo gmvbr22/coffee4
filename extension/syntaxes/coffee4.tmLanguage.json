@@ -12,21 +12,21 @@
 	"repository": {
 		"keywords": {
 			"patterns": [{
-				"name": "keyword.control.coffe4",
+				"name": "keyword.control.coffee4",
 				"match": "\\b(package|class|interface|export)\\b"
 			}]
 		},
 		"strings": {
-			"name": "string.quoted.double.coffe4",
+			"name": "string.quoted.double.coffee4",
 			"begin": "\"",
 			"end": "\"",
 			"patterns": [
 				{
-					"name": "constant.character.escape.coffe4",
+					"name": "constant.character.escape.coffee4",
 					"match": "\\\\."
 				}
 			]
 		}
 	},
-	"scopeName": "source.coffee"
+	"scopeName": "source.coffee4"
 }
