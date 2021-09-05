@@ -1,33 +1,18 @@
 import {AbstractParseTreeVisitor} from 'antlr4ts/tree/AbstractParseTreeVisitor';
-import {
-  CoffeeClassContext,
-  CoffeeInterfaceContext,
-  NamespaceContext,
-} from '../coffee4/Coffee4Parser';
-
+import {ProgramContext} from '../coffee4/Coffee4Parser';
 import {Coffee4Visitor} from '../coffee4/Coffee4Visitor';
+import {Builder, defaultBuilder} from './builder';
+import {LangBuilder} from './lang';
 
 export class Visitor
-  extends AbstractParseTreeVisitor<string>
-  implements Coffee4Visitor<string>
+  extends AbstractParseTreeVisitor<Builder>
+  implements Coffee4Visitor<Builder>
 {
-  protected defaultResult(): string {
-    return '';
+  protected defaultResult(): Builder {
+    return defaultBuilder;
   }
 
-  public aggregateResult(aggregate: string, nextResult: string) {
-    return aggregate + nextResult;
-  }
-
-  public visitCoffeClass(ctx: CoffeeClassContext): string {
-    return `type ${ctx.NAME().text} struct { }\n`;
-  }
-
-  public visitCoffeInterface(ctx: CoffeeInterfaceContext): string {
-    return `type ${ctx.NAME().text} interface { }\n`;
-  }
-
-  public visitNamespace(node: NamespaceContext): string {
-    return 'package ' + node.ID().text + '\n';
+  public visitProgram(node: ProgramContext): Builder {
+    return LangBuilder.parseProgram(node);
   }
 }
