@@ -1,0 +1,12 @@
+package help;
+
+interface Vehicle {
+
+}
+
+export interface Car {}
+
+export class Mesh {}
+
+class Cube {}
+

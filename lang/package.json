@@ -6,6 +6,7 @@
     "coffee": "cli.js"
   },
   "scripts": {
+    "example": "ts-node src/cli.ts -i example/lang.c4 -o example/lang.go",
     "antlr4ts-coffee4": "antlr4ts -visitor src/coffee4/Coffee4.g4",
     "lint": "gts lint",
     "clean": "gts clean",
