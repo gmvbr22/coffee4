@@ -40,10 +40,9 @@ export class Coffee4Parser extends Parser {
 	public static readonly T__9 = 10;
 	public static readonly T__10 = 11;
 	public static readonly T__11 = 12;
-	public static readonly T__12 = 13;
-	public static readonly PACKAGE_NAME = 14;
-	public static readonly TYPE_NAME = 15;
-	public static readonly WS = 16;
+	public static readonly PACKAGE_NAME = 13;
+	public static readonly TYPE_NAME = 14;
+	public static readonly WS = 15;
 	public static readonly RULE_program = 0;
 	public static readonly RULE_namespace = 1;
 	public static readonly RULE_privateTypes = 2;
@@ -65,12 +64,12 @@ export class Coffee4Parser extends Parser {
 
 	private static readonly _LITERAL_NAMES: Array<string | undefined> = [
 		undefined, "'package'", "';'", "'public'", "'interface'", "'{'", "'}'", 
-		"'class'", "'func'", "'('", "')'", "'String'", "'Int'", "'Bool'",
+		"'class'", "'('", "')'", "'String'", "'Int'", "'Bool'",
 	];
 	private static readonly _SYMBOLIC_NAMES: Array<string | undefined> = [
 		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
-		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
-		"PACKAGE_NAME", "TYPE_NAME", "WS",
+		undefined, undefined, undefined, undefined, undefined, undefined, "PACKAGE_NAME", 
+		"TYPE_NAME", "WS",
 	];
 	public static readonly VOCABULARY: Vocabulary = new VocabularyImpl(Coffee4Parser._LITERAL_NAMES, Coffee4Parser._SYMBOLIC_NAMES, []);
 
@@ -316,15 +315,16 @@ export class Coffee4Parser extends Parser {
 			this.state = 59;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << Coffee4Parser.T__2) | (1 << Coffee4Parser.T__7) | (1 << Coffee4Parser.T__10) | (1 << Coffee4Parser.T__11) | (1 << Coffee4Parser.T__12))) !== 0)) {
+			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << Coffee4Parser.T__2) | (1 << Coffee4Parser.T__9) | (1 << Coffee4Parser.T__10) | (1 << Coffee4Parser.T__11) | (1 << Coffee4Parser.PACKAGE_NAME) | (1 << Coffee4Parser.TYPE_NAME))) !== 0)) {
 				{
 				this.state = 57;
 				this._errHandler.sync(this);
 				switch (this._input.LA(1)) {
-				case Coffee4Parser.T__7:
+				case Coffee4Parser.T__9:
 				case Coffee4Parser.T__10:
 				case Coffee4Parser.T__11:
-				case Coffee4Parser.T__12:
+				case Coffee4Parser.PACKAGE_NAME:
+				case Coffee4Parser.TYPE_NAME:
 					{
 					this.state = 55;
 					this.privateFields();
@@ -370,16 +370,17 @@ export class Coffee4Parser extends Parser {
 			this.state = 66;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
+			case Coffee4Parser.T__9:
 			case Coffee4Parser.T__10:
 			case Coffee4Parser.T__11:
-			case Coffee4Parser.T__12:
 				this.enterOuterAlt(_localctx, 1);
 				{
 				this.state = 64;
 				this.fieldDeclaration();
 				}
 				break;
-			case Coffee4Parser.T__7:
+			case Coffee4Parser.PACKAGE_NAME:
+			case Coffee4Parser.TYPE_NAME:
 				this.enterOuterAlt(_localctx, 2);
 				{
 				this.state = 65;
@@ -416,15 +417,16 @@ export class Coffee4Parser extends Parser {
 			this.state = 71;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
+			case Coffee4Parser.T__9:
 			case Coffee4Parser.T__10:
 			case Coffee4Parser.T__11:
-			case Coffee4Parser.T__12:
 				{
 				this.state = 69;
 				this.fieldDeclaration();
 				}
 				break;
-			case Coffee4Parser.T__7:
+			case Coffee4Parser.PACKAGE_NAME:
+			case Coffee4Parser.TYPE_NAME:
 				{
 				this.state = 70;
 				this.methodDeclaration();
@@ -486,16 +488,14 @@ export class Coffee4Parser extends Parser {
 			this.enterOuterAlt(_localctx, 1);
 			{
 			this.state = 77;
-			this.match(Coffee4Parser.T__7);
-			this.state = 78;
 			this.identifier();
+			this.state = 78;
+			this.match(Coffee4Parser.T__7);
 			this.state = 79;
 			this.match(Coffee4Parser.T__8);
 			this.state = 80;
-			this.match(Coffee4Parser.T__9);
-			this.state = 81;
 			this.match(Coffee4Parser.T__4);
-			this.state = 82;
+			this.state = 81;
 			this.match(Coffee4Parser.T__5);
 			}
 		}
@@ -521,7 +521,7 @@ export class Coffee4Parser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 84;
+			this.state = 83;
 			_la = this._input.LA(1);
 			if (!(_la === Coffee4Parser.PACKAGE_NAME || _la === Coffee4Parser.TYPE_NAME)) {
 			this._errHandler.recoverInline(this);
@@ -557,9 +557,9 @@ export class Coffee4Parser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 86;
+			this.state = 85;
 			_la = this._input.LA(1);
-			if (!((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << Coffee4Parser.T__10) | (1 << Coffee4Parser.T__11) | (1 << Coffee4Parser.T__12))) !== 0))) {
+			if (!((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << Coffee4Parser.T__9) | (1 << Coffee4Parser.T__10) | (1 << Coffee4Parser.T__11))) !== 0))) {
 			this._errHandler.recoverInline(this);
 			} else {
 				if (this._input.LA(1) === Token.EOF) {
@@ -587,7 +587,7 @@ export class Coffee4Parser extends Parser {
 	}
 
 	public static readonly _serializedATN: string =
-		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x03\x12[\x04\x02" +
+		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x03\x11Z\x04\x02" +
 		"\t\x02\x04\x03\t\x03\x04\x04\t\x04\x04\x05\t\x05\x04\x06\t\x06\x04\x07" +
 		"\t\x07\x04\b\t\b\x04\t\t\t\x04\n\t\n\x04\v\t\v\x04\f\t\f\x04\r\t\r\x03" +
 		"\x02\x03\x02\x03\x02\x07\x02\x1E\n\x02\f\x02\x0E\x02!\v\x02\x03\x02\x03" +
@@ -596,32 +596,31 @@ export class Coffee4Parser extends Parser {
 		"\x06\x03\x07\x03\x07\x03\x07\x03\x07\x03\x07\x07\x07<\n\x07\f\x07\x0E" +
 		"\x07?\v\x07\x03\x07\x03\x07\x03\b\x03\b\x05\bE\n\b\x03\t\x03\t\x03\t\x05" +
 		"\tJ\n\t\x03\n\x03\n\x03\n\x03\n\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03" +
-		"\v\x03\f\x03\f\x03\r\x03\r\x03\r\x02\x02\x02\x0E\x02\x02\x04\x02\x06\x02" +
-		"\b\x02\n\x02\f\x02\x0E\x02\x10\x02\x12\x02\x14\x02\x16\x02\x18\x02\x02" +
-		"\x04\x03\x02\x10\x11\x03\x02\r\x0F\x02V\x02\x1A\x03\x02\x02\x02\x04$\x03" +
-		"\x02\x02\x02\x06*\x03\x02\x02\x02\b,\x03\x02\x02\x02\n1\x03\x02\x02\x02" +
-		"\f6\x03\x02\x02\x02\x0ED\x03\x02\x02\x02\x10F\x03\x02\x02\x02\x12K\x03" +
-		"\x02\x02\x02\x14O\x03\x02\x02\x02\x16V\x03\x02\x02\x02\x18X\x03\x02\x02" +
-		"\x02\x1A\x1F\x05\x04\x03\x02\x1B\x1E\x05\x06\x04\x02\x1C\x1E\x05\b\x05" +
-		"\x02\x1D\x1B\x03\x02\x02\x02\x1D\x1C\x03\x02\x02\x02\x1E!\x03\x02\x02" +
-		"\x02\x1F\x1D\x03\x02\x02\x02\x1F \x03\x02\x02\x02 \"\x03\x02\x02\x02!" +
-		"\x1F\x03\x02\x02\x02\"#\x07\x02\x02\x03#\x03\x03\x02\x02\x02$%\x07\x03" +
-		"\x02\x02%&\x07\x10\x02\x02&\'\x07\x04\x02\x02\'\x05\x03\x02\x02\x02(+" +
-		"\x05\f\x07\x02)+\x05\n\x06\x02*(\x03\x02\x02\x02*)\x03\x02\x02\x02+\x07" +
-		"\x03\x02\x02\x02,/\x07\x05\x02\x02-0\x05\f\x07\x02.0\x05\n\x06\x02/-\x03" +
-		"\x02\x02\x02/.\x03\x02\x02\x020\t\x03\x02\x02\x0212\x07\x06\x02\x0223" +
-		"\x05\x16\f\x0234\x07\x07\x02\x0245\x07\b\x02\x025\v\x03\x02\x02\x0267" +
-		"\x07\t\x02\x0278\x05\x16\f\x028=\x07\x07\x02\x029<\x05\x0E\b\x02:<\x05" +
-		"\x10\t\x02;9\x03\x02\x02\x02;:\x03\x02\x02\x02<?\x03\x02\x02\x02=;\x03" +
-		"\x02\x02\x02=>\x03\x02\x02\x02>@\x03\x02\x02\x02?=\x03\x02\x02\x02@A\x07" +
-		"\b\x02\x02A\r\x03\x02\x02\x02BE\x05\x12\n\x02CE\x05\x14\v\x02DB\x03\x02" +
-		"\x02\x02DC\x03\x02\x02\x02E\x0F\x03\x02\x02\x02FI\x07\x05\x02\x02GJ\x05" +
-		"\x12\n\x02HJ\x05\x14\v\x02IG\x03\x02\x02\x02IH\x03\x02\x02\x02J\x11\x03" +
-		"\x02\x02\x02KL\x05\x18\r\x02LM\x05\x16\f\x02MN\x07\x04\x02\x02N\x13\x03" +
-		"\x02\x02\x02OP\x07\n\x02\x02PQ\x05\x16\f\x02QR\x07\v\x02\x02RS\x07\f\x02" +
-		"\x02ST\x07\x07\x02\x02TU\x07\b\x02\x02U\x15\x03\x02\x02\x02VW\t\x02\x02" +
-		"\x02W\x17\x03\x02\x02\x02XY\t\x03\x02\x02Y\x19\x03\x02\x02\x02\n\x1D\x1F" +
-		"*/;=DI";
+		"\f\x03\f\x03\r\x03\r\x03\r\x02\x02\x02\x0E\x02\x02\x04\x02\x06\x02\b\x02" +
+		"\n\x02\f\x02\x0E\x02\x10\x02\x12\x02\x14\x02\x16\x02\x18\x02\x02\x04\x03" +
+		"\x02\x0F\x10\x03\x02\f\x0E\x02U\x02\x1A\x03\x02\x02\x02\x04$\x03\x02\x02" +
+		"\x02\x06*\x03\x02\x02\x02\b,\x03\x02\x02\x02\n1\x03\x02\x02\x02\f6\x03" +
+		"\x02\x02\x02\x0ED\x03\x02\x02\x02\x10F\x03\x02\x02\x02\x12K\x03\x02\x02" +
+		"\x02\x14O\x03\x02\x02\x02\x16U\x03\x02\x02\x02\x18W\x03\x02\x02\x02\x1A" +
+		"\x1F\x05\x04\x03\x02\x1B\x1E\x05\x06\x04\x02\x1C\x1E\x05\b\x05\x02\x1D" +
+		"\x1B\x03\x02\x02\x02\x1D\x1C\x03\x02\x02\x02\x1E!\x03\x02\x02\x02\x1F" +
+		"\x1D\x03\x02\x02\x02\x1F \x03\x02\x02\x02 \"\x03\x02\x02\x02!\x1F\x03" +
+		"\x02\x02\x02\"#\x07\x02\x02\x03#\x03\x03\x02\x02\x02$%\x07\x03\x02\x02" +
+		"%&\x07\x0F\x02\x02&\'\x07\x04\x02\x02\'\x05\x03\x02\x02\x02(+\x05\f\x07" +
+		"\x02)+\x05\n\x06\x02*(\x03\x02\x02\x02*)\x03\x02\x02\x02+\x07\x03\x02" +
+		"\x02\x02,/\x07\x05\x02\x02-0\x05\f\x07\x02.0\x05\n\x06\x02/-\x03\x02\x02" +
+		"\x02/.\x03\x02\x02\x020\t\x03\x02\x02\x0212\x07\x06\x02\x0223\x05\x16" +
+		"\f\x0234\x07\x07\x02\x0245\x07\b\x02\x025\v\x03\x02\x02\x0267\x07\t\x02" +
+		"\x0278\x05\x16\f\x028=\x07\x07\x02\x029<\x05\x0E\b\x02:<\x05\x10\t\x02" +
+		";9\x03\x02\x02\x02;:\x03\x02\x02\x02<?\x03\x02\x02\x02=;\x03\x02\x02\x02" +
+		"=>\x03\x02\x02\x02>@\x03\x02\x02\x02?=\x03\x02\x02\x02@A\x07\b\x02\x02" +
+		"A\r\x03\x02\x02\x02BE\x05\x12\n\x02CE\x05\x14\v\x02DB\x03\x02\x02\x02" +
+		"DC\x03\x02\x02\x02E\x0F\x03\x02\x02\x02FI\x07\x05\x02\x02GJ\x05\x12\n" +
+		"\x02HJ\x05\x14\v\x02IG\x03\x02\x02\x02IH\x03\x02\x02\x02J\x11\x03\x02" +
+		"\x02\x02KL\x05\x18\r\x02LM\x05\x16\f\x02MN\x07\x04\x02\x02N\x13\x03\x02" +
+		"\x02\x02OP\x05\x16\f\x02PQ\x07\n\x02\x02QR\x07\v\x02\x02RS\x07\x07\x02" +
+		"\x02ST\x07\b\x02\x02T\x15\x03\x02\x02\x02UV\t\x02\x02\x02V\x17\x03\x02" +
+		"\x02\x02WX\t\x03\x02\x02X\x19\x03\x02\x02\x02\n\x1D\x1F*/;=DI";
 	public static __ATN: ATN;
 	public static get _ATN(): ATN {
 		if (!Coffee4Parser.__ATN) {

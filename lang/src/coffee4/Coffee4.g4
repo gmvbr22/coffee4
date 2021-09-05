@@ -42,7 +42,7 @@ fieldDeclaration
     ;
 
 methodDeclaration
-    : 'func' identifier '(' ')'
+    : identifier '(' ')'
       '{'
       '}'
     ;
