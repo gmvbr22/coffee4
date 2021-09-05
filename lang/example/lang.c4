@@ -1,12 +1,24 @@
-package help;
+package hero;
 
 interface Vehicle {
 
 }
 
-export interface Car {}
+public interface Task {}
 
-export class Mesh {}
+public class Mesh {
 
-class Cube {}
+    public String name
+    public Int x; 
+    public Int y;
+    public Int z; 
+}
+
+public class Person {
+
+    public String name;
+    public Int age;
+    public String email;
+    public String password;
+}
 
