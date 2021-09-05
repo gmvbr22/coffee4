@@ -1,6 +1,6 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "coffee4",
+	"name": "coffe4",
 	"patterns": [
 		{
 			"include": "#keywords"
@@ -12,21 +12,21 @@
 	"repository": {
 		"keywords": {
 			"patterns": [{
-				"name": "keyword.control.coffee4",
-				"match": "\\b(if|while|for|return)\\b"
+				"name": "keyword.control.coffe4",
+				"match": "\\b(package|class|interface|export)\\b"
 			}]
 		},
 		"strings": {
-			"name": "string.quoted.double.coffee4",
+			"name": "string.quoted.double.coffe4",
 			"begin": "\"",
 			"end": "\"",
 			"patterns": [
 				{
-					"name": "constant.character.escape.coffee4",
+					"name": "constant.character.escape.coffe4",
 					"match": "\\\\."
 				}
 			]
 		}
 	},
-	"scopeName": "source.coffe4"
+	"scopeName": "source.coffe"
 }
